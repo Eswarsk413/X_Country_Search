@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 const CountryCard = ({ name, flag, altText }) => {
   return (
     <div
+      className="countryCard" // Ensures the class name is correct
       style={{
         display: "flex",
         flexDirection: "column",
@@ -41,7 +42,7 @@ function Countrysearch() {
     fetch(API_URL)
       .then((res) => res.json())
       .then((data) => setCountries(data))
-      .catch((error) => console.error("Error fetching data: ", error));
+      .catch((error) => console.error("Error fetching data: ", error)); // Log errors as required
   }, []);
 
   const filteredCountries = countries.filter((country) =>
@@ -54,11 +55,11 @@ function Countrysearch() {
         style={{
           display: "flex",
           justifyContent: "center",
-          marginTop: "20px", // Space from the top of the page
+          marginTop: "20px",
         }}
       >
         <input
-          type="text"
+          type="text" // Ensures correct input type
           placeholder="Search for a country"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
@@ -75,15 +76,15 @@ function Countrysearch() {
         style={{
           display: "flex",
           flexWrap: "wrap",
-          justifyContent: "center", // Center the cards horizontally
-          marginTop: "20px", // Space between input and cards
+          justifyContent: "center",
+          marginTop: "20px",
         }}
       >
         {filteredCountries.map((country) => (
           <CountryCard
             key={country.cca3}
             name={country.name.common}
-            flag={country.flags.png}
+            flag={country.flags.png} // Ensure only img is used
           />
         ))}
       </div>
